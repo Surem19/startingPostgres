@@ -42,9 +42,13 @@ then
 	exit
 fi
 
-echo "I'm not connected, i will install"
+echo 	"I'm not connected, i will install postgres"
 
-echo "delete and reload ddbb"
+echo    "Now we are going to delete the database, are you sure you want to continue?"
+
+read -p "press enter to continue." sacrificial
+
+echo 	"Delete and reload ddbb"
 sudo apt-get --purge remove postgresql-10 postgresql-client-10 postgresql-client-common postgresql-common postgresql-contrib postgresql-contrib-10
 
 echo    "instal postgres"						
@@ -83,8 +87,7 @@ then
 fi
 
 
-echo "I'm not connected, i will install"
-
+echo "I'm not connected"
 
 
 
