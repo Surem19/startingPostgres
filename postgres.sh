@@ -28,17 +28,17 @@ then
 	echo    "Add new postgressql.conf"
 	findPostgresql=$(find / -name 'postgresql.conf') 			#Find the path where locate postgresql.conf
 	pathPostgresql="${findPostgresql%/*}"
-	sudo cp david.txt $pathPostgresql                			#Save new file in the path
+	sudo cp postgresql.conf $pathPostgresql                			#Save new file in the path
 
 	echo    "Add new pg_hba.conf"
 	findPghba=$(find / -name 'pg_hba.conf')					#Find the path where locate postgresql.conf
 	pathPghba="${findPghba%/*}"
-	sudo cp app.txt $pathPghba						#Save new file in the path
+	sudo cp pg_hba.conf $pathPghba						#Save new file in the path
 
 	echo    "Add new service.settings"
 	findServiceSettings=$(find / -name 'service.settings')			#Find the path where locate postgresql.conf
 	pathServiceSettings="${findServiceSettings%/*}"
-	sudo cp david.txt $pathServiceSettings					#Save new file in the path
+	sudo cp service.settings $pathServiceSettings					#Save new file in the path
 	exit
 fi
 
