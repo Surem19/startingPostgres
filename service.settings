@@ -1,0 +1,18 @@
+[Service]
+name=XCurrent Server
+main=com.ripple.xcurrent.server.XCurrentServerMain
+user=xcurrent
+# Newline-separated (and indented) list of arguments to pass to the Main
+args=	-server 
+	-Xms128m 
+	-Xmx1g 
+	-Ddb=postgres
+
+[JVM]
+# Newline-separated (and indented) list of arguments to pass to the JVM
+args=-Dhibernate.query.plan_cache_max_size=64
+     -server
+     -Xms2g
+     -Xmx2g
+     -XX:+HeapDumpOnOutOfMemoryError
+     -XX:HeapDumpPath=var/log/
