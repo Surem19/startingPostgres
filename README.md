@@ -1,4 +1,4 @@
-# Inizialice Ripple
+# initialize Ripple
 
 It will be a process of automating the database and software necessary to execute our project.
 
@@ -9,6 +9,7 @@ This program will execute a script that will be:
   -First, check if you have an access and connection to the database.
   -Second, in case you don't have it, install the database.
   -Third, once the connection is installed and checked, add the necessary settings.
+You can change the data you need for the database connection in the properties file 
 
 Look **Installacton** to know the deploy of proyect.
 
