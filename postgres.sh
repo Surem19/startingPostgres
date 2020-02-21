@@ -1,0 +1,92 @@
+#!/bin/bash
+clear
+echo "Reading properties ....."
+file="./properties.txt"
+if [ -f "$file" ]
+then
+    echo "$file found."
+    while IFS='=' read -r key value
+    do
+        key=$(echo $key | tr '.' '_')
+        eval ${key}=\${value}
+    done < "$file"
+    user="${db_user}"
+    pass="${db_passwd}"
+    port="${db_port}"
+    name="${db_name}"
+else
+    echo "$file not found."
+fi
+
+echo    "Chech the connection"
+
+if psql -U $user -lqt | cut -d \| -f 1 | grep -qw $name;			#Chech if the ddbb exist
+then
+	echo "I'm connected"
+	echo    "Add configurations"
+
+	echo    "Add new postgressql.conf"
+	findPostgresql=$(find / -name 'postgresql.conf') 			#Find the path where locate postgresql.conf
+	pathPostgresql="${findPostgresql%/*}"
+	sudo cp david.txt $pathPostgresql                			#Save new file in the path
+
+	echo    "Add new pg_hba.conf"
+	findPghba=$(find / -name 'pg_hba.conf')					#Find the path where locate postgresql.conf
+	pathPghba="${findPghba%/*}"
+	sudo cp app.txt $pathPghba						#Save new file in the path
+
+	echo    "Add new service.settings"
+	findServiceSettings=$(find / -name 'service.settings')			#Find the path where locate postgresql.conf
+	pathServiceSettings="${findServiceSettings%/*}"
+	sudo cp david.txt $pathServiceSettings					#Save new file in the path
+	exit
+fi
+
+echo "I'm not connected, i will install"
+
+echo "delete and reload ddbb"
+sudo apt-get --purge remove postgresql-10 postgresql-client-10 postgresql-client-common postgresql-common postgresql-contrib postgresql-contrib-10
+
+echo    "instal postgres"						
+sudo apt install postgresql postgresql-contrib					#Install a postgresql
+sudo apt-get install postgresql-client
+echo    "installation finished"
+ 
+echo    "conect to ddbb && create ddbb"
+psql -U $user < load.sql							#Install a postgresql
+
+echo    "import ddbb"
+psql -U $user $name < xcurrent_postgresql.sql					#Install a postgresql
+
+echo    "Chech the connection again"
+
+if psql -U $user -lqt | cut -d \| -f 1 | grep -qw $name;			#Install a postgresql
+then
+	echo "I'm connected"
+	echo    "Add configurations"
+
+	echo    "Add new postgressql.conf"
+	findPostgresql=$(find / -name 'postgresql.conf') 			#Find the path where locate postgresql.conf
+	pathPostgresql="${findPostgresql%/*}"
+	sudo cp david.txt $pathPostgresql                			#Save new file in the path
+
+	echo    "Add new pg_hba.conf"
+	findPghba=$(find / -name 'pg_hba.conf')					#Find the path where locate postgresql.conf
+	pathPghba="${findPghba%/*}"
+	sudo cp app.txt $pathPghba						#Save new file in the path
+
+	echo    "Add new service.settings"
+	findServiceSettings=$(find / -name 'service.settings')			#Find the path where locate postgresql.conf
+	pathServiceSettings="${findServiceSettings%/*}"
+	sudo cp david.txt $pathServiceSettings					#Save new file in the path
+	exit
+fi
+
+
+echo "I'm not connected, i will install"
+
+
+
+
+
+
