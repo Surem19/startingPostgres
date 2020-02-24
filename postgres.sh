@@ -23,22 +23,6 @@ echo    "Chech the connection"
 if psql -U $user -lqt | cut -d \| -f 1 | grep -qw $name;			#Chech if the ddbb exist
 then
 	echo "I'm connected"
-	echo    "Add configurations"
-
-	echo    "Add new postgressql.conf"
-	findPostgresql=$(find / -name 'postgresql.conf') 			#Find the path where locate postgresql.conf
-	pathPostgresql="${findPostgresql%/*}"
-	sudo cp postgresql.conf $pathPostgresql                			#Save new file in the path
-
-	echo    "Add new pg_hba.conf"
-	findPghba=$(find / -name 'pg_hba.conf')					#Find the path where locate postgresql.conf
-	pathPghba="${findPghba%/*}"
-	sudo cp pg_hba.conf $pathPghba						#Save new file in the path
-
-	echo    "Add new service.settings"
-	findServiceSettings=$(find / -name 'service.settings')			#Find the path where locate postgresql.conf
-	pathServiceSettings="${findServiceSettings%/*}"
-	sudo cp service.settings $pathServiceSettings					#Save new file in the path
 	exit
 fi
 
@@ -52,10 +36,26 @@ echo 	"Delete and reload ddbb"
 sudo apt-get --purge remove postgresql-10 postgresql-client-10 postgresql-client-common postgresql-common postgresql-contrib postgresql-contrib-10
 
 echo    "instal postgres"						
-sudo apt install postgresql postgresql-contrib					#Install a postgresql
-sudo apt-get install postgresql-client
+sudo 	apt install postgresql postgresql-contrib					#Install a postgresql
+sudo 	apt-get install postgresql-client
 echo    "installation finished"
- 
+echo    "Add configurations"
+
+echo    "Add new postgressql.conf"
+findPostgresql=$(find / -name "postgresql.conf") 			#Find the path where locate postgresql.conf
+pathPostgres=$(sudo dirname "$findPostgresql")
+sudo chmod 777 $pathPostgres
+sudo rm $findPostgresql 	#Save new file in the path
+
+cp david.txt $pathPostgres
+
+echo    "Add new pg_hba.conf"
+findPghba=$(find / -name "pg_hba.conf") 			#Find the path where locate postgresql.conf
+pathHba=$(sudo dirname "$findPghba")
+sudo chmod 777 $pathHba
+sudo rm $findPghba 	#Save new file in the path
+cp david.txt $pathHba
+	
 echo    "conect to ddbb && create ddbb"
 psql -U $user < load.sql							#Install a postgresql
 
@@ -67,17 +67,6 @@ echo    "Chech the connection again"
 if psql -U $user -lqt | cut -d \| -f 1 | grep -qw $name;			#Install a postgresql
 then
 	echo "I'm connected"
-	echo    "Add configurations"
-
-	echo    "Add new postgressql.conf"
-	findPostgresql=$(find / -name 'postgresql.conf') 			#Find the path where locate postgresql.conf
-	pathPostgresql="${findPostgresql%/*}"
-	sudo cp david.txt $pathPostgresql                			#Save new file in the path
-
-	echo    "Add new pg_hba.conf"
-	findPghba=$(find / -name 'pg_hba.conf')					#Find the path where locate postgresql.conf
-	pathPghba="${findPghba%/*}"
-	sudo cp app.txt $pathPghba						#Save new file in the path
 
 	echo    "Add new service.settings"
 	findServiceSettings=$(find / -name 'service.settings')			#Find the path where locate postgresql.conf
@@ -88,7 +77,6 @@ fi
 
 
 echo "I'm not connected"
-
 
 
 
