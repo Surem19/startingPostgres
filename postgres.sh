@@ -45,19 +45,19 @@ echo    "Add new postgressql.conf"
 findPostgresql=$(find / -name "postgresql.conf") 			#Find the path where locate postgresql.conf
 pathPostgres=$(sudo dirname "$findPostgresql")
 sudo chmod 777 $pathPostgres
-cp postgresql.conf $pathPostgres
+sudo cp postgresql.conf $pathPostgres
 
 echo    "Add new pg_hba.conf"
 findPghba=$(find / -name "pg_hba.conf") 			#Find the path where locate postgresql.conf
 pathHba=$(sudo dirname "$findPghba")
 sudo chmod 777 $pathHba
-cp pg_hba.conf $pathHba
+sudo cp pg_hba.conf $pathHba
 	
 echo    "conect to ddbb && create ddbb"
 psql -U $user < load.sql							#Install a postgresql
 
 echo    "import ddbb"
-psql -U $user $name < xcurrent_postgresql.sql					#Install a postgresql
+psql -U $user -d $name < xcurrent_postgresql.sql					#Install a postgresql
 
 echo    "Chech the connection again"
 
@@ -74,7 +74,6 @@ fi
 
 
 echo "I'm not connected"
-
 
 
 
