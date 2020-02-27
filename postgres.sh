@@ -86,6 +86,6 @@ then
 fi
 
 
-echo "I'm not connected try again"
+echo "I'm not connected try again or check the error file"
 
 
