@@ -1,0 +1,12 @@
+Este archivo mostraremos los posibles errores que pueden surgir durante la instalacion de la base de datos postgres
+
+	1.- Cuando se comprueba que la conexion de la base de datos no es correcta, realizamos una desistalacion. Muchas veces al realizar la desistalacion de la base de datos los archivos quedan en cache y no se borran del todo. Esto puede dar problemas a la hora de volver a crear los nuevos archivos y que queden corruptos.
+		Se recomienda por tanto volver a desisalarla y reinicar el ordenador.
+
+	2.- Los archivos postgresql.conf revisar que el puerto es el adecuado. Por lo general, lo suele ser, pero en algunas ocasiones este puerto viene cambiado y puede producir fallos mas adelante.
+		Se recomienda en caso de que no sea el puerto adecuado modificar el archivo a mano y añadirlo.
+
+	3.- Errores al configurar la conraseña del usuario postgres, puede ocurrir que el usuario postgres ya tenga una contraseña y no sea el usuario por defecto.
+		Se recomienda volver a desistalar el postgres y reiniciar el ordenador.
+
+Se recomienda la instalación del programa pgadmin3 para poder ver visualmente mejor todos los datos, además, en caso de que algún paso no funcionase poder ejecutarlo desde esta plataforma.
