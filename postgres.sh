@@ -51,38 +51,39 @@ echo    "installation finished"
 echo    "Add configurations"
 
 echo    "Add new postgressql.conf"
-findPostgresql=$(find / -name "postgresql.conf") 			#Find the path where locate postgresql.conf
-pathPostgres=$(sudo dirname "$findPostgresql")				#SAve the dirname of this file
-sudo chmod 777 $pathPostgres						#give permissions to modify the directory
-sudo cp postgresql.conf $pathPostgres					#Copy the new file it  the directory
+#findPostgresql=$(find / -name "postgresql.conf") 			#Find the path where locate postgresql.conf
+#pathPostgres=$(sudo dirname "$findPostgresql")				#SAve the dirname of this file
+#sudo chmod 777 $pathPostgres						
+#sudo cp -f postgresql.conf $pathPostgres					
+sudo chmod 777 /etc/postgresql/10/main/postgressql.conf			#give permissions to modify the directory
+sudo cp -f postgresql.conf /etc/postgresql/10/main			#Copy the new file it  the directory
 
 echo    "Add new pg_hba.conf"
-findPghba=$(find / -name "pg_hba.conf") 				#Find the path where locate postgresql.conf
-pathHba=$(sudo dirname "$findPghba")					#SAve the dirname of this file
-sudo chmod 777 $pathHba							#give permissions to modify the directory
-sudo cp pg_hba.conf $pathHba						#Copy the new file it  the directory
-	
+#findPghba=$(find / -name "pg_hba.conf") 				#Find the path where locate postgresql.conf
+#pathHba=$(sudo dirname "$findPghba")					#SAve the dirname of this file
+#sudo chmod 777 $pathHba							
+#sudo cp -f pg_hba.conf $pathHba						
+sudo chmod 777 /etc/postgresql/10/main/pg_hba.conf			#give permissions to modify the directory
+sudo cp -f pg_hba.conf /etc/postgresql/10/main				#Copy the new file it  the directory
+
 echo    "conect to ddbb && create ddbb"
-sudo -u $user psql < load.sql							#Load the configuratios to save de creates datatable
+sudo -u $user psql $user< load.sql							#Load the configuratios to save de creates datatable
 
 echo    "import ddbb"
-sudo -u $user psql< xcurrent_postgresql.sql					#Import the sql
+sudo -u $user psql $name< xcurrent_postgresql.sql					#Import the sql
 
 echo    "Chech the connection again"
 
 if psql -U $user -lqt | cut -d \| -f 1 | grep -qw $name;			#Check again
 then
-	echo "I'm connected"
+	echo 	"I'm connected"
+	echo    "Now you should restart the computer to finish the configuration"
 
-	echo    "Add new service.settings"
-	findServiceSettings=$(find / -name 'service.settings')			
-	pathServiceSettings="${findServiceSettings%/*}"
-	sudo cp david.txt $pathServiceSettings					
+	read -p "press enter to continue." sacrificial				
 	exit
 fi
 
 
-echo "I'm not connected"
-
+echo "I'm not connected try again"
 
 
