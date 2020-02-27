@@ -18,6 +18,8 @@ else
     echo "$file not found."
 fi
 
+sudo sed -i "s/changeme/$pass/g" "load.sql"					#change pass un file load 
+
 echo    "Chech the connection"
 
 if psql -U $user -lqt | cut -d \| -f 1 | grep -qw $name;			#Chech if the ddbb exist
