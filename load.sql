@@ -1,7 +1,7 @@
 \password postgres;
 changeme;
 changeme;
-CREATE database changeDDBB; 
+CREATE database changemeDDBB; 
 \g;
 
 
