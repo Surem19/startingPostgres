@@ -20,6 +20,8 @@ fi
 
 sudo sed -i "s/changeme/$pass/g" "load.sql"					#change pass un file load 
 
+sudo sed -i "s/changemeDDBB/$name/g" "load.sql"					#change pass un file load 
+
 echo    "Chech the connection"
 
 if psql -U $user -lqt | cut -d \| -f 1 | grep -qw $name;			#Chech if the ddbb exist
