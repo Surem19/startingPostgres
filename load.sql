@@ -1,9 +1,8 @@
 \password postgres;
 changeme;
 changeme;
-g;
-CREATE database globalnode; 
-quit;
+CREATE database changeDDBB; 
+\g;
 
 
 
