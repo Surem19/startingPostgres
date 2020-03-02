@@ -76,6 +76,12 @@ sudo -u $user psql $user< load.sql							#Load the configuratios to save de crea
 echo    "import ddbb"
 sudo -u $user psql $name< xcurrent_postgresql.sql					#Import the sql
 
+echo    "start postgresql"
+sudo systemctl start postgresql								#start postgresql
+
+echo    "Reload postgresql"
+sudo systemctl reload postgresql							#reload postgresql
+
 echo    "Chech the connection again"
 
 if psql -U $user -lqt | cut -d \| -f 1 | grep -qw $name;			#Check again
