@@ -20,7 +20,7 @@ fi
 
 sudo sed -i "s/changeme/$pass/g" "load.sql"					#change pass un file load 
 
-sudo sed -i "s/changemeDDBB/$name/g" "load.sql"					#change pass un file load 
+sudo sed -i "s/changeName/$name/g" "load.sql"					#change pass un file load 
 
 echo    "Chech the connection"
 
