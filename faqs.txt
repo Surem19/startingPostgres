@@ -1,19 +1,22 @@
-Preguntas Frecuentes(FAQs)
+Frequently Asked Questions (FAQs)
 
-	
 
--¿Que hacer cuando ocurre un error de que no ha podido copiar el archivo a la carpeta correspondiente?
-	
-	Se recomienda ver el error y revisar en que  ruta ha fallado y comprobar si puede ser por algún permiso que no este bien habilitado.
 
--¿Que hacer cuando al instalar el programa no encuentra las carpetas propias del postgres?
-	
-	Esto puede ser debido a que al borrar y volver a instalar el postgres se hayan cacheado, para ello lo que se recomienda  es realizar un borrado del postgres, posteriormente reiniciar el ordenador, comprobar que se han borrado los archivos y volver a instalarlos*.
+-What to do when an error occurs that you could not copy the file to the corresponding folder?
 
--¿Que hacer si cuando intento ingresar la contraseña por primera vez me dice que ingrese una?
-	
-	Esto puede ocurrir debido a que se ha quedado cacheado la base de datos. PAra solucionarlo tendras que deistalarla y luego reiniciar, una  vez reiniciado volver a hacer la instalacion*.
-			
-			
-Se recomienda instalar el programa pgadmin3 para instalar los comando sql y crear la base de datos en caso de que se quiera generar .
+	It is recommended to see the error and check which route has failed and check if it can be due to a permit
+	that is not well enabled.
 
+-What to do when the installation the program does not find the postgres own folders?
+
+	This may be due to the fact that when deleting and reinstalling the postgres they have been cached, for this, 
+	what is recommended is to delete the postgres, then restart the computer, check that the files have been deleted 
+	and reinstall again.
+
+- What to do if I try to enter the password for the first time it tells me to enter another one?
+
+	This happens because the database has been cached. To solve it you will have to restart, 
+	once restarted, do the installation again.
+
+
+It is recommended to install the pgadmin3 program to install the sql commands and create the database in case you want to generate.
